@@ -1,0 +1,86 @@
+let x;
+let y;
+let z;
+let f;
+
+let xspeed;
+let yspeed;
+
+let dvd;
+
+let r,g,b;
+
+function preload()
+{
+	dvd = loadImage("dvd logo yeet.png");
+}
+
+function setup()
+{
+  createCanvas(600, 400);
+  x = random(width-dvd.width);
+  y = random(height-dvd.height);
+  f = 0;
+  setColor();
+  xspeed = 1;
+  yspeed = 1;
+  z = -1;
+}
+
+function setColor()
+{
+	r = random(20, 256);
+  g = random(20, 256);
+  b = random(20, 256);
+  tint(r,g,b);
+}
+
+function draw()
+{
+  background(0);
+  image(dvd,x,y);
+  
+ 	x += xspeed;
+	y += yspeed;
+  
+  if(x <= 0)
+	{
+  	xspeed = -xspeed;
+    x = 0;
+    setColor();
+	}else if(x >= width-dvd.width){
+  	xspeed = -xspeed;
+    x = width-dvd.width;
+    setColor();
+  }
+  
+  if(y <= 0)
+	{
+  	yspeed = -yspeed;
+    y = 0;
+    setColor();
+	}else if(y >= height-dvd.height){
+  	yspeed = -yspeed;
+    y = height-dvd.height;
+    setColor();
+  }
+  
+  if(y == 0 && x == width-dvd.width)
+  {
+  	z++;   
+	}else if (y == height-dvd.height && x == 0)
+  {
+    z++;      
+  }else if (y == 0 && x == 0)
+  {
+    z++;      
+  }else if (y == height-dvd.height && x == width-dvd.width)
+  {
+    z++;
+  }
+  
+  if(z > -1)
+  {
+    setColor();
+  }
+}
